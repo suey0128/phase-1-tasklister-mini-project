@@ -1,30 +1,35 @@
 // target the element we need to add the function to 
-addEventListener("DOMContentLoaded", (e) => { })
-//   // it is a form submission, we need to prevent default
-//   e.preventDefault();
-// });
+addEventListener("DOMContentLoaded", (e) => { 
+
+})
 
 
 
 const newForm = document.querySelector('#create-task-form');
-let delBtn;
-let toDoli;
 
-function delLi() {
-  toDoli.remove();
-}
 
 newForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  toDoli = document.createElement('li');
+  const toDoli = document.createElement('li');
+  const liSpan = document.createElement('span');
+  const delBtn = document.createElement('button');
+
   toDoli.textContent = e.target['new-task-description'].value;
-  delBtn = document.createElement('button');
   delBtn.textContent = 'x';
-  document.querySelector('#tasks').append(toDoli,delBtn); 
-  delBtn.onclick = "delLi()";
+
+  liSpan.append(delBtn);
+  toDoli.append(liSpan); 
+  document.querySelector('#tasks').append(toDoli); 
 })
 
 
+document.querySelector('#tasks').addEventListener('click', e => {
+  // console.log(
+  //   'e.target:', e.target,
+  //   'e.target.parentNode.parentNode:', e.target.parentNode.parentNode
+  // )
+  e.target.parentNode.parentNode.remove();
+})
 
 
 
